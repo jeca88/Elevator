@@ -2,7 +2,7 @@ let elevator = document.getElementById("elevator");
 let floors = document.getElementById("floors");
 let buttons = document.getElementById("buttons");
 
-let liftCurrentFloor = 0;
+let elevatorCurrentFloor = 0;
 let position = 0;
 let inMovment = false;
 
@@ -45,8 +45,8 @@ createDisplayButtons(5);
 
 function callElevatorClick(floor) {
 
-    if (!inMovment && floor !== liftCurrentFloor) {
-        if(floor<liftCurrentFloor) {
+    if (!inMovment && floor !== elevatorCurrentFloor) {
+        if(floor<elevatorCurrentFloor) {
             getFloorDown(floor);
         } else {
             getFloorUp(floor);
@@ -56,9 +56,9 @@ function callElevatorClick(floor) {
 
  function getFloorUp(floor) {  
     inMovment = true;
-    const newFloorHeight = 100 * liftCurrentFloor;
+    const newFloorHeight = 100 * elevatorCurrentFloor;
     let animateMaxPosition = 100*floor;
-    liftCurrentFloor = floor; 
+    elevatorCurrentFloor = floor; 
     position = newFloorHeight;
 
     let animate = setInterval(change, 10)
@@ -78,9 +78,9 @@ function callElevatorClick(floor) {
 
  function getFloorDown(floor) { 
     inMovment = true;
-    const newFloorHeight = 100 * liftCurrentFloor;
+    const newFloorHeight = 100 * elevatorCurrentFloor;
     let animateMaxPosition = 100*floor;
-    liftCurrentFloor = floor; 
+    elevatorCurrentFloor = floor; 
     position = newFloorHeight;
 
     
@@ -100,10 +100,10 @@ function callElevatorClick(floor) {
     }
     
  function clickDisplay(floor) { 
-    if(floor==liftCurrentFloor || inMovment) {
+    if(floor==elevatorCurrentFloor || inMovment) {
         return    
     }
-    else if(floor > liftCurrentFloor) {
+    else if(floor > elevatorCurrentFloor) {
         getFloorUp(floor);
     }
     else { 
