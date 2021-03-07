@@ -11,13 +11,23 @@ function createFloors(numOfFloors) {
     for(let i=numOfFloors; i>=0; i--) {
         let floor = `<div class=" floor" id="${i}">
         <div class="floor-name" id="${i}" > ${i == 0? "Ground": "Floor" + i}</div>
-        <div class = "buttons" id="btn5"> 
-            <button class="btn up" onclick ="clickUp(${i})"><i class="fas fa-chevron-circle-up"></i></button>
-            <button class="btn down" onclick ="clickDown(${i})"><i class="fas fa-chevron-circle-down"></i></button>
+        <div class = "buttons" id="buttonPanel${i}"> 
         </div>
-    </div>`;
+        </div>`;
 
-      floors.insertAdjacentHTML('beforeend', floor);
+        let buttonsDisplayUp = `<button class="btn up" onclick ="callElevatorClick(${i})"><i class="fas fa-chevron-circle-up"></i></button>`;
+        let buttonsDisplayDown = `<button class="btn down" onclick ="callElevatorClick(${i})"><i class="fas fa-chevron-circle-down"></i></button>`;
+
+        floors.insertAdjacentHTML('beforeend', floor);
+        let buttonPanel = document.getElementById(`buttonPanel${i}`);
+
+        if(i !== numOfFloors) {
+            buttonPanel.insertAdjacentHTML('beforeend', buttonsDisplayUp); 
+        }
+
+        if(i !== 0) {
+            buttonPanel.insertAdjacentHTML('beforeend', buttonsDisplayDown); 
+        }
     }
                 
 }
@@ -33,24 +43,16 @@ function createDisplayButtons(numOfButtons) {
 }
 createDisplayButtons(5);
 
+function callElevatorClick(floor) {
 
-function clickUp(floor) {
-    if(floor<liftCurrentFloor || inMovment) {
-        return    
+    if (!inMovment && floor !== liftCurrentFloor) {
+        if(floor<liftCurrentFloor) {
+            getFloorDown(floor);
+        } else {
+            getFloorUp(floor);
+        }
     }
-    
-    getFloorUp(floor);
  }
-
-
- function clickDown(floor) {
-    if(liftCurrentFloor<floor || inMovment) {
-        return
-    }
-
-    getFloorDown(floor);
-}
-
 
  function getFloorUp(floor) {  
     inMovment = true;
