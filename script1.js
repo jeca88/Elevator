@@ -84,8 +84,8 @@ function callElevatorClick(floor) {
     position = newFloorHeight;
 
     
-    let animate = setInterval(change, 10)
-    function change() { 
+    let animate = setInterval(changePosition, 10)
+    function changePosition() { 
         if (position == animateMaxPosition){
            clearInterval(animate);
            inMovment = false;
