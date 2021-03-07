@@ -56,8 +56,8 @@ function callElevatorClick(floor) {
 
  function getFloorUp(floor) {  
     inMovment = true;
-    const newFloorHeight = 100 * elevatorCurrentFloor;
-    let animateMaxPosition = 100*floor;
+    const newFloorHeight = 100 * elevatorCurrentFloor + floor;
+    let animateMaxPosition = 100*floor + floor;
     elevatorCurrentFloor = floor; 
     position = newFloorHeight;
 
@@ -70,7 +70,7 @@ function callElevatorClick(floor) {
         } 
         else {      
            position++;        
-           elevator.style.marginBottom = position + 'px';      
+           elevator.style.bottom = position + 'px';      
         }  
        }
     }
@@ -78,8 +78,8 @@ function callElevatorClick(floor) {
 
  function getFloorDown(floor) { 
     inMovment = true;
-    const newFloorHeight = 100 * elevatorCurrentFloor;
-    let animateMaxPosition = 100*floor;
+    const newFloorHeight = 100 * elevatorCurrentFloor + floor;
+    let animateMaxPosition = 100*floor + floor;
     elevatorCurrentFloor = floor; 
     position = newFloorHeight;
 
@@ -93,7 +93,7 @@ function callElevatorClick(floor) {
         } 
         else {      
            position--;        
-           elevator.style.marginBottom = position + 'px';      
+           elevator.style.bottom = position + 'px';      
         }  
       }
 
